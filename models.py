@@ -1,5 +1,5 @@
 import datetime
-from Udacity_Item_catalog import db
+from controller import db
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,7 +20,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
     created_at = db.Column(db.DateTime, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey(user.id))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     items = db.relationship('Item', backref='category', lazy='dynamic')
 
@@ -35,8 +35,8 @@ class Item(db.Model):
     description = db.Column(db.Text, unique=True)
     created_at = db.Column(db.DateTime, nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey(user.id))
-    category_id = db.Column(db.Integer, db.ForeignKey(category.id))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
     def __init__(self, username, email):
         self.name = name

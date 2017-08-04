@@ -1,4 +1,4 @@
-from Udacity_Item_catalog import app
+from controller import app
 
 @app.route('/')
 def index():

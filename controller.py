@@ -22,7 +22,8 @@ from models import User, Category, Item
 
 @app.route('/')
 def index():
-    return 'Hello world!'
+    items = Items.limit(20).all()
+    return render_template('index.html', items=items)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
